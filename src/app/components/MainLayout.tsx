@@ -44,6 +44,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { MinaretIcon, MosqueIconSimple } from "./icons/MosqueIcon";
+import { IslamicStar } from "./icons/IslamicStar";
 
 // Simulated user role and modules
 const userRole = "Owner"; // Owner, Super Admin, Admin
@@ -336,10 +337,16 @@ export function MainLayout() {
   const navigationStructure = getNavigationStructure(userRole, organizationModules);
 
   const toggleSection = (section: string) => {
-    setExpandedSections((prev) => ({
-      ...prev,
-      [section]: !prev[section],
-    }));
+    setExpandedSections((prev) => {
+      // Close all other sections (accordion behavior)
+      const newState: Record<string, boolean> = {};
+      Object.keys(prev).forEach((key) => {
+        newState[key] = false;
+      });
+      // Toggle the clicked section
+      newState[section] = !prev[section];
+      return newState;
+    });
   };
 
   // Close mobile menu on route change
@@ -449,13 +456,17 @@ export function MainLayout() {
                           key={item.path}
                           to={item.path}
                           onClick={handleLinkClick}
-                          className={`block px-2 sm:px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                          className={`flex items-center gap-2 px-2 sm:px-3 py-1.5 rounded-lg text-sm transition-colors ${
                             isActive
                               ? "bg-[#0F766E]/10 text-[#0F766E] font-medium"
                               : "text-[#64748B] hover:bg-[#F8FAFC] hover:text-[#0F172A]"
                           }`}
                         >
-                          {item.name}
+                          <IslamicStar 
+                            size={8} 
+                            className={isActive ? "text-[#0F766E]" : "text-[#CBD5E1]"} 
+                          />
+                          <span>{item.name}</span>
                         </Link>
                       );
                     })}
