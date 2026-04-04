@@ -357,9 +357,9 @@ export function Dashboard() {
                     <p className="text-xs sm:text-sm text-[#0F172A] font-medium truncate">{item.title}</p>
                     <div className="flex items-center gap-2 sm:gap-3 mt-0.5 flex-wrap">
                       {item.org && (
-                        <p className="text-xs text-[#475569] truncate">{item.org} •</p>
+                        <span className="text-xs text-[#475569] truncate">{item.org} •</span>
                       )}
-                      <p className="text-xs text-[#475569]">{item.type}</p>
+                      <span className="text-xs text-[#475569]">{item.type}</span>
                       <span
                         className={`text-xs px-2 py-0.5 rounded-full font-medium whitespace-nowrap ${
                           item.status === "Live"

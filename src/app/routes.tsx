@@ -16,6 +16,8 @@ import { PublicVideoDetail } from "./components/PublicVideoDetail";
 import { PodcastViewer } from "./components/PodcastViewer";
 import { PlatformControl } from "./components/PlatformControl";
 import { PlatformOrganizations } from "./components/PlatformOrganizations";
+import { Login } from "./components/Login";
+import { Signup } from "./components/Signup";
 
 // Placeholder components
 function Settings() {
@@ -129,6 +131,7 @@ export const router = createBrowserRouter([
       { path: "podcast-companion/published", Component: PodcastCompanion },
       { path: "podcast-companion/access", Component: PodcastCompanion },
       { path: "podcast-companion/sessions/:id", Component: PodcastCompanionDetail },
+      { path: "podcast-companion/:id", Component: PodcastCompanionDetail }, // Legacy route for backward compatibility
       // Studio with submenus
       { path: "studio/jobs", Component: Studio },
       { path: "studio/upload", Component: Studio },
@@ -186,5 +189,13 @@ export const router = createBrowserRouter([
   {
     path: "/p/:id",
     Component: PodcastViewer,
+  },
+  {
+    path: "/login",
+    Component: Login,
+  },
+  {
+    path: "/signup",
+    Component: Signup,
   },
 ]);
